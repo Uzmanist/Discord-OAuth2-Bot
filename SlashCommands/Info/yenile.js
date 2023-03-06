@@ -3,8 +3,8 @@ const { ApplicationCommandType, ApplicationCommandOptionType } = require('discor
 const discord = require("discord.js");
 let AuthDB = require(`../../database/AuthDB`)
 module.exports = {
-  name: "refresh",
-  description: "Refreshs authorizations.",
+  name: "yenile",
+  description: "Yetkilendirmeleri Yenile",
   //type: ApplicationCommandType.ChatInput,
   
 
