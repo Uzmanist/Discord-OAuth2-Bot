@@ -35,7 +35,7 @@ module.exports = {
   client_secret: process.env.client_secret, //Örneğin; "n5wa6tn67as3jdk..." [Şart]
   //Botunuzun Client Secreti'ni .env klasörü oluşturup oraya yazacaksınız. Eğer replit kullanıyorsanız Secrets klasörüne yazmanız yeterli olacak. 
   
-  redirect_uri: "", //Örneğin; "https://en-iyisi.uzmanist.repl.co" [Şart]
+  redirect_uri: "", //Örneğin; "https://en-iyisi.uzmanist.repl.co/authed" [Şart]
   //Domaininizi yazacaksınız. (Yetkilendirmeden Sonra Yönlendirilecek Site) 
 
 } //Eğer Sorun Yaşarsanız https://discord.gg/sMPrwvZRfJ Adresinden Sunucuma Gelip Destek Alabilirsiniz.
