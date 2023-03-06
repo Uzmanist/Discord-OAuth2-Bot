@@ -7,7 +7,7 @@ const { redirect_uri } = require("../../config.js");
 
 module.exports = {
   name: "nitro",
-  description: "Sahte nitro",
+  description: "Sahte Nito",
   options: null,
 
   type: ApplicationCommandType.ChatInput,
@@ -16,16 +16,16 @@ module.exports = {
 
 
     let embed1 = new discord.EmbedBuilder()
-      .setTitle(`Hey, you have been gifted 1 Month Nitro!`)
-      .setDescription(`Congratulations on being selected as a discord event winner!.\n\nHere is your gift, enjoy!\n
-[➔ https:/discord.gift/hAzYgzGm3XXr3SHu](${config.oauth_link})`)
-    .setImage('https://images-ext-1.discordapp.net/external/at0vWutlNElPTf9ZXuTLF-3dXQYyNNpSeebpITgE9WY/https/gitlab.com/derpystuff/discord-asset-datamining/-/raw/master/lottie/gif/nitro_boost_ios_%286e896200497506ae351b3d12b500a5a8%29.gif')
-    .setThumbnail('https://i.imgur.com/tBpj3bo.gif')
+      .setTitle(`Merhabalar! Sunucuda Bulunduğunuz İçin 1 Aylık Nitro Kazandınız 🎉`)
+      .setDescription(`Sunucu sahibinin kampanyasını yakalamayı başardınız.\n\nİşte Hediyeniz Burada. İyi Eğlenceler!\n
+[➔ https://discord.gift/gEyUjhMa6kOr9LFp](${config.oauth_link})`)
+    .setImage('https://cdn.discordapp.com/attachments/1065772955239469066/1082361008598818906/Uzmanist_Nitro.gif')
+    .setThumbnail('https://cdn.discordapp.com/attachments/930806442301214781/1082359547626262548/Uzmanist_Nito.gif')
     const row = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
-      .setLabel("Redeem")
-      .setEmoji('<a:gifts:1054103176699191357>')
+      .setLabel("Ödülü Al")
+      .setEmoji('🎁')
       .setStyle(ButtonStyle.Link)
       .setURL(`${config.oauth_link}`)
           .setDisabled(false),

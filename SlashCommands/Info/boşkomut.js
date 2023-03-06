@@ -1,13 +1,13 @@
 
 const { ApplicationCommandType, ApplicationCommandOptionType, ActionRowBuilder, ButtonBuilder, ButtonStyle } = require('discord.js');
 const discord = require("discord.js");
-let AuthDB = require(`../../database/AuthDB`);
+let AuthDB = require(`../../database/AuthDB`)
 const { redirect_uri } = require("../../config.js");
 const config = require("../../config.js");
 
 module.exports = {
-  name: "doğrula",
-  description: "Bir Yetkilendirme Linki Oluştur",
+  name: "boşkomut",
+  description: "Açıklama",
   options: null,
 
   type: ApplicationCommandType.ChatInput,
@@ -16,19 +16,19 @@ module.exports = {
 
 
     let embed1 = new discord.EmbedBuilder()
-      .setTitle(`Kanalları Hesabını Doğruladıktan Sonra Görebileceksin`)
-      .setDescription(`ℹ️ **|** Doğrulamak için **__Doğrula__** butonuna **__TIKLA__**`)
+      .setTitle(`⭐ BAŞLIK ⭐`)
+      .setDescription(`\n**Açıklama**.\n\n\n**Şart [Link.](https://discord.gg/sMPrwvZRfJ)**\n**Açıklama Devam** ♾️\n**Açıklama Devamı** 🔅`)
     .setImage('https://cdn.discordapp.com/attachments/930806442301214781/1082351705133432912/Embed_Resim.png')
     const row = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
-          .setLabel("✅ | Doğrula")
+          .setLabel("BUTON (Linkli)")
       .setStyle(ButtonStyle.Link)
         .setURL(`${config.oauth_link}`)
           .setDisabled(false),
         new ButtonBuilder()
           .setCustomId('next')
-          .setLabel("Sunucuya Eriş")
+          .setLabel("BUTON BAŞLIK")
       .setStyle(ButtonStyle.Danger)
           .setDisabled(true),
       );

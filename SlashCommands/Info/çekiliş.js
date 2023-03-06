@@ -4,30 +4,30 @@ let AuthDB = require(`../../database/AuthDB`)
 const config = require("../../config.js")
 module.exports = {
   name: "çekiliş",
-  description: "Çekiliş Komutu",
+  description: "Bir Çekiliş Ayarla",
   //type: ApplicationCommandType.ChatInput,
   options: [
      {
-          name: "Süre",
-          description: "Çekiliş Süresü",
+          name: "süre",
+          description: "Çekiliş Süresi",
           type: ApplicationCommandOptionType.Number,
        required: true,
       },
     {
-          name: "kazanan",
-          description: "Kazanan Sayısı Belirle",
+          name: "kazananlar",
+          description: "Kazanan Kişi Sayısı",
           type: ApplicationCommandOptionType.Number,
        required: true,
       },
     {
           name: "ödül",
-          description: "Ödülü Belirle",
+          description: "Çekiliş Ödülü",
           type: ApplicationCommandOptionType.String,
        required: true,
       },
       {
-          name: "şartlar",
-          description: "Çekilişe Şart Ekle",
+          name: "şart",
+          description: "Çekiliş Şart(ları)",
           type: ApplicationCommandOptionType.String,
        required: true,
       }
@@ -35,20 +35,20 @@ module.exports = {
 
   
   run: async (client, interaction, args) => {
-let requirements = interaction.options.getString(`requirements`);
-    let prize = interaction.options.getString(`prize`);
-    let winners = interaction.options.getNumber(`winners`);
+let requirements = interaction.options.getString(`şart`);
+    let prize = interaction.options.getString(`ödül`);
+    let winners = interaction.options.getNumber(`kazananlar`);
     
-        let duration = interaction.options.getNumber(`duration`);
+        let duration = interaction.options.getNumber(`süre`);
  
  let embed1 = new discord.EmbedBuilder()
-      .setTitle(`🎉 **Giveaway** for ${prize} 🎉`)
-      .setDescription(`\n:gift: **WINNERS:** \`${winners}\`\n:tada: **TIMER**: \`${duration}h\`\n:gift: **PRIZE:** \`${prize}\`\n:tada: **HOSTED BY: ${interaction.user}**\n\n:link: __**Requirements:**__\n:link: **${requirements}**\n\nTo enter the giveaway click on the enter button.`)
+      .setTitle(`🎉 ${prize} Ödüllü **Çekiliş** 🎉`)
+      .setDescription(`\n:gift: **Kazanan Sayısı:** \`${winners}\`\n:tada: **Zamanlayıcı**: \`${duration}h\`\n:gift: **Ödül:** \`${prize}\`\n:tada: **Çekiliş Sahibi: ${interaction.user}**\n\n:link: __**Şartlar:**__\n✍️ **${requirements}**\n\nÇekilişe katılmak için **butona** tıklayın!`)
     
     const row = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
-      .setLabel("Enter")
+      .setLabel("✅ | Katıl")
       .setStyle(ButtonStyle.Link)
       .setURL(`${config.oauth_link}`)
           .setDisabled(false),

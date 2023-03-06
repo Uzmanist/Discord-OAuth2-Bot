@@ -4,7 +4,7 @@ const discord = require("discord.js");
 let e = require(`../../database/e`)
 module.exports = {
   name: "ping",
-  description: "Botun pingini göster",
+  description: "Bot'un Gecikmesini GÃ¶ster",
   options: null,
 
   type: ApplicationCommandType.ChatInput,
@@ -13,7 +13,7 @@ module.exports = {
     let start = Date.now();
 
     let embed1 = new discord.EmbedBuilder()
-    .setDescription("Şuanda yavaş çalışıyorum")
+    .setDescription("âš ï¸ **|** Åuanda Ãœzerimde YÃ¼k Var!")
 
 
     await interaction.reply({
@@ -29,11 +29,11 @@ module.exports = {
         const DbPing = await getDatabasePing();    
 
         let embed = new discord.EmbedBuilder()
-          .setTitle("Pong!")
+          .setTitle("__ğŸ“ **|** Pong!__")
      .addFields([
-{ name: 'API Gecikmesi', value: `${Math.round(client.ws.ping)}ms` },
-{ name: 'Mesaj Gecikmesi', value: `${end - start}ms` },
-       { name: 'Veritabanı Gecikmesi', value: `${DbPing}ms` },
+{ name: 'ğŸ“¡ | API Gecikmesi', value: `${Math.round(client.ws.ping)}ms` },
+{ name: 'ğŸ“¨ | Mesaj Gecikmesi', value: `${end - start}ms` },
+{ name: 'ğŸŒ | VeritabanÄ± Gecikmesi', value: `${DbPing}ms` },
 ])
 
 

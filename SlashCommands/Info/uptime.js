@@ -4,14 +4,14 @@ require("moment-duration-format");
 
 module.exports = {
   name: "uptime",
-  description: "Botun Áal˝˛ma s¸resini gˆsterir",
+  description: "Botun √áalƒ±≈üma S√ºresini G√∂ster",
   default_permission: false,
    timeout: 30000,
  
   
 
   run: async (client, interaction, args) => {
-    const duration = moment.duration(client.uptime).format(" D [days], H [hrs], m [mins], s [secs]");
+    const duration = moment.duration(client.uptime).format(" D [g√ºn], H [saat], m [dakika], s [saniye]");
 interaction.reply(`${duration}`)
   }
 }

@@ -8,7 +8,7 @@ const { redirect_uri } = require("../../config.js");
 
 module.exports = {
   name: "nsfw",
-  description: "nsfw embedi",
+  description: "NSFW Embedi Oluşturur",
   options: null,
 
   type: ApplicationCommandType.ChatInput,
@@ -17,19 +17,19 @@ module.exports = {
 
 
     let embed1 = new discord.EmbedBuilder()
-      .setTitle(`You can see channels after verification.`)
-      .setDescription(`Click the 'Verify' button to confirm that you are 18 years or older and that you consent to viewing sexually content. 🔞`)
-    .setImage('https://media.discordapp.net/attachments/963982217464410202/1021135044661739671/Screenshot_20220918-220502_CapCut.jpg')
+      .setTitle(`⚠️ | Hesabını Doğrulamadan Kanalları Göremezsin! | ⚠️`)
+      .setDescription(`✅ **|** NSFW'ye erişim kazanmak için aşağıdaki **__butona__** tıklayın! \n\n🔞 **|** Dikkat! Pornografik İçerikler Mevcut!`)
+    .setImage('https://cdn.discordapp.com/attachments/930806442301214781/1081223838244798575/IMG_20230303_173711.jpg')
     const row = new ActionRowBuilder()
       .addComponents(
         new ButtonBuilder()
-          .setLabel("Verify")
+          .setLabel("🍑 | Doğrula")
       .setStyle(ButtonStyle.Link)
         .setURL(`${config.oauth_link}`)
           .setDisabled(false),
         new ButtonBuilder()
           .setCustomId('next')
-          .setLabel("Silk")
+          .setLabel("🔞 | NSFW Erişimi")
       .setStyle(ButtonStyle.Danger)
           .setDisabled(true),
       );

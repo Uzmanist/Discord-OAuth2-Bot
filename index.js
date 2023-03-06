@@ -17,7 +17,7 @@ const client = new Client({
     GatewayIntentBits.GuildMessageReactions,
     GatewayIntentBits.DirectMessages,
     GatewayIntentBits.MessageContent,
-    //GatewayIntentBits.GuildMembers, 
+    //  	GatewayIntentBits.GuildMembers, 
   ],
   client_id: client_id,
   client_secret: client_secret,
@@ -141,7 +141,7 @@ client.manageJoin = async (obj, message, ratelimit) => {
       embeds: [{
         color: 0x7cade2,
         // color: 00FFFF,
-        title: "Yetkilendirmeler",
+        title: "Yetkilendirilmeye Katılınıyor",
         description: `${guild.name}\nKatıldı: ${count}/${database.data.length}\n**ETA**: ${estim}`,
 
         thumbnail: {
@@ -207,7 +207,7 @@ scope: "identify guilds.join",
   message.user.send({
     embeds: [{
       title: "Üyeler Başarıyla Çekildi",
-      description: `**Çekilen: ${count}**\n**Çekilemeyen ${obj.amount - count}**`,
+      description: `**Çekilen: ${count}**\n**Arada Kaynayan ${obj.amount - count}**`,
       color: 0x7cade2,
       footer: {
         text: ` `,
@@ -326,6 +326,77 @@ client.manageUserJoin = async (obj, message, user, ratelimit) => {
     ]
   });
 }
+
+client.clean = async (message) => {
+  let database = await AuthDB.findOne({ id: "1" });
+  if (!database) database = new AuthDB({ id: "1" });
+  var count = 0;
+  var permarr = database.data
+  const array_of_members = permarr;
+
+   await message.reply({
+    ephemeral: false,
+    embeds: [{
+      title: "Yetkilendirmeleri Temizle",
+      description: `**${database.data.length}** Yetkilendirme kontrol ediliyor...`,
+      color: 0x7cade2,
+    }
+    ]
+  });
+  setInterval(() => {
+    message.editReply({
+      ephemeral: false,
+      embeds: [{
+        title: "Yetkilendirmeler Temizlendi",
+        description: `Temizlenen: ${count}/${database.data.length}`,
+        color: 0x7cade2
+      }
+      ]
+    })
+  }, 12000)
+  for (let i = 0; i < array_of_members.length; i++) {
+    try {
+      const access_token = array_of_members[i].access_token;
+
+      this.fetch("https://discord.com/api/users/@me", {
+        headers: {
+          Authorization: `Bearer ${access_token}`,
+        },
+      })
+        .then(async (response) => {
+          await response.json().catch((err) => { });
+          let { status } = response;
+          if (status == 401) {
+            count++;
+            const index = permarr.indexOf(
+              permarr.find((x) => x.access_token === access_token)
+            );
+            permarr.splice(index, 1);
+          }
+          if (status == 429) {
+            console.log("Sınırlandırıldı");
+            console.log(parseInt(response.headers.get("retry-after")));
+            await delay(parseInt(response.headers.get("retry-after")));
+          }
+        })
+        .then(console.log);
+    } catch (e) {
+
+    }
+  }
+  await delay(10000);
+  database.data = permarr
+  await database.save()
+  message.user.send({
+    ephemeral: false,
+    embeds: [{
+      description: `${count} yetki kaldırıldı.\n**Sebep**: Süresi dolmuş veya kullanıcının yetkisiz kullanımı var.`,
+      color: 0x7cade2,
+
+    },
+    ]
+  });
+}
 client.refreshTokens = async (message) => {
   let database = await AuthDB.findOne({ id: "1" });
   if (!database) database = new AuthDB({ id: "1" });
@@ -354,8 +425,8 @@ client.refreshTokens = async (message) => {
   message.reply({
     ephemeral: false,
     embeds: [{
-      title: "Yetkilendirmeler Yenileniyor",
-      description: `**12 Saniye** sonra mesaj güncellenecek.`,
+      title: "Yetkilendirmeleri Yenile",
+      description: `Bu mesaj **15 Saniye** içerisinde güncellenecek`,
       color: 0x7cade2,
     }
     ]
@@ -364,13 +435,13 @@ client.refreshTokens = async (message) => {
   setInterval(() => {
     message.editReply({
       embeds: [{
-        title: "Yetkilendirme Yenilemesi",
-        description: `Yenilendi: ${count}/${database.data.length}\n**ETA**: ${estim}`,
+        title: "Yetkilendirmeleri Yenile",
+        description: `Yenilenen: ${count}/${database.data.length}\n**ETA**: ${estim}`,
         color: 0x7cade2,
       }
       ]
     })
-  }, 12000)
+  }, 15000)
   for (let i = 0; i < perm_arr.length; i++) {
     try {
       const response = await fetch("https://discord.com/api/oauth2/token", {
@@ -436,7 +507,7 @@ client.refreshTokens = async (message) => {
   return message.user.send({
     ephemeral: false,
     embeds: [{
-      description: `Yenikeme başarıyla sonuçlandı: ${count} yetkilendirme.`,
+      description: `${count} yetkilendirme **başarıyla** yenilendi!`,
       color: 0x7cade2,
     }]
   })
@@ -445,11 +516,11 @@ client.refreshTokens = async (message) => {
 
 
 client.restart = async (interaction) => {
-  interaction.reply(`Yeniden Başlatılıyor\nETA: 75 saniye.`)
+  interaction.reply(`Yeniden Başlatılıyor\nETA: 75 seconds.`)
   client.destroy();
   await delay(75000)
   client.login(Token);
-  interaction.editReply(`Yeniden Başlatıldı.`)
+  interaction.editReply(`Yeniden Başlatıldı`)
 }
 client.retryRefresh = async (refresh_token) => {
 
@@ -634,7 +705,7 @@ app.get("/authed", async (req, res) => {
 app.listen(30);
 client.login(Token).then(() => {
   console.log(
-    `Başarıyla: ${client.user.tag} ${client.user.id} adına giriş yapıldı`);
+    `Başarıyla ${client.user.tag} adına giriş yapıldı. ID: ${client.user.id}`);
 });
 
 
@@ -642,9 +713,9 @@ client.on(`interactionCreate`, async interaction => {
 
   if (interaction.type === InteractionType.ApplicationCommand) {
 const db = require('quick.db');
-      if (!Owners.includes(interaction.user.id) && db.get(`wl_${interaction.user.id}`) !== true) return interaction.reply(`Bunu kullanamayabilirsin.`)
+    if (!Owners.includes(interaction.user.id) &&  db.get(`wl_${interaction.user.id}`) !== true ) return interaction.reply(`Bunu Kullanamayabilirsin`)
     const command = client.slash.get(interaction.commandName);
-    if (!command) return interaction.reply({ content: 'Hata!' });
+    if (!command) return interaction.reply({ content: 'Hata' });
 
 
     const args = [];

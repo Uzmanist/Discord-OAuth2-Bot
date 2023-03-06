@@ -4,7 +4,7 @@ const discord = require("discord.js");
 let AuthDB = require(`../../database/AuthDB`)
 module.exports = {
   name: "restart",
-  description: "Botu yeniden baþlat",
+  description: "Botu Yeniden BaÅŸlat",
   //type: ApplicationCommandType.ChatInput,
   
 

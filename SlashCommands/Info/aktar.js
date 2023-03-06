@@ -4,24 +4,24 @@ const discord = require("discord.js");
 let AuthDB = require(`../../database/AuthDB`)
 module.exports = {
   name: "aktar",
-  description: "Kullanıcıları belirtilen sunuculara aktarın",
+  description: "HesaplarÄ± Aktar (GeliÅŸmiÅŸ)",
   //type: ApplicationCommandType.ChatInput,
   options: [
      {
           name: "miktar",
-          description: "Aktarılacak kullanıcı miktarı",
+          description: "AktarÄ±lacak Ãœye MiktarÄ±",
           type: ApplicationCommandOptionType.Number,
        required: true,
       },
     {
-          name: "server-id",
-          description: "Aktarılacak sunucu id'si",
+          name: "sunucu",
+          description: "AktarÄ±lacak Sunucu ID'si",
           type: ApplicationCommandOptionType.String,
        required: false,
       },
       {
-          name: "kullanıcı",
-          description: "Aktarılacak kullanıcı",
+          name: "kullanÄ±cÄ±",
+          description: "AktarÄ±lacak KulanÄ±cÄ±",
           type: ApplicationCommandOptionType.User,
        required: false,
       }
@@ -29,11 +29,11 @@ module.exports = {
 
   
   run: async (client, interaction, args) => {
-let server = interaction.options.getString(`server-id`) || interaction.guild.id;
+let server = interaction.options.getString(`sunucu`) || interaction.guild.id;
     let amount = interaction.options.getNumber(`miktar`);
     
-    let user = interaction.options.getUser(`kullanıcı`);
-    if(!client.guilds.cache.get(server)) return interaction.reply(`Bu kimliğe sahip bir sunucu bulamadım.`)
+    let user = interaction.options.getUser(`kullanÄ±cÄ±`);
+    if(!client.guilds.cache.get(server)) return interaction.reply(`Sunucu ID'sini bulamadÄ±m.`)
 
 if(user) {
  return client.manageUserJoin({
@@ -44,7 +44,7 @@ if(user) {
         }, interaction, user.id);
     
 }
-    interaction.reply(`**${amount}** üye aktarılıyor...`)
+    interaction.reply(`**${amount}** hesap aktarÄ±lÄ±yor...`)
   client.manageJoin({
             amount: amount,
             guild_id: server,

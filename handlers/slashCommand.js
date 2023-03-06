@@ -1,13 +1,13 @@
-import { client_id } from "../config.js";
+const config = require("../config.js")
 
 
-export default (client) => {
+module.exports = (client) => {
 	 const fs = require("fs");
     const ascii = require("ascii-table");
 const { ActivityType } = require("discord.js");
     let slash = []
 
-    const table = new ascii().setHeading(" Slash Commands", "Load Status");
+    const table = new ascii().setHeading(" Slash Komutları", "Durum");
   
     const commandFolders = fs.readdirSync("./SlashCommands");
     for (const folder of commandFolders) {
@@ -19,7 +19,7 @@ const { ActivityType } = require("discord.js");
         if (command.name) {
           client.slash.set(command.name, command);
           slash.push(command)
-          table.addRow(file, "✔️");
+          table.addRow(file, "  ✔️  ");
         } else {
           table.addRow(
             file,
@@ -29,11 +29,11 @@ const { ActivityType } = require("discord.js");
         }
       }
       console.log(table.toString());
-      console.log(`https://discord.com/api/oauth2/authorize?client_id=${client_id}&permissions=8&scope=applications.commands%20bot`)
+      console.log(`https://discord.com/api/oauth2/authorize?client_id=${config.client_id}&permissions=8&scope=applications.commands%20bot`)
     }
     client.on("ready", async() => {
       await client.application.commands.set(slash)
-      client.user.setActivity(`Uzmanist Development`, {
+      client.user.setActivity(`Uzmanist#7221`, {
     type: ActivityType.Watching,
   });
     })

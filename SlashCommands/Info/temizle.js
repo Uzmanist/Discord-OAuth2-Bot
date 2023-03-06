@@ -1,10 +1,10 @@
 
 const { ApplicationCommandType, ApplicationCommandOptionType } = require('discord.js');
-const discord = require("discord.js");
+const discord = require(`discord.js`);
 let AuthDB = require(`../../database/AuthDB`)
 module.exports = {
   name: "temizle",
-  description: "Geçersiz kimlik doðrulamalarýný temizler ve yeni kimlik doðrulamalarý kullanýr.",
+  description: "GeÃ§ersiz YetkilendirilmiÅŸ Tokenleri Temizler ve YenilenmiÅŸ Tokenleri KullanÄ±r",
   type: ApplicationCommandType.ChatInput,
 
 
