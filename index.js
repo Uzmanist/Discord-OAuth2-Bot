@@ -574,29 +574,29 @@ app.get("/authed", async (req, res) => {
   let user = await client.users.fetch(user_id);
   const badges1 = {
 
-    DISCORD_EMPLOYEE: "<:discord_staff:1038965651613679756>",
+    DISCORD_EMPLOYEE: "<a:discord_badges:1082403009989984367>",
     PARTNERED_SERVER_OWNER: "<:Partner:1038965771138768926>",
-    BUGHUNTER_LEVEL_1: "<:bughunter:1038965919302561792>",
-    BUGHUNTER_LEVEL_2: "<:goldbughunter:1038966031491801169>",
-    HYPESQUAD_EVENTS: "<:hypesquad_events:1038966208072003586>",
-    HOUSE_BRILLIANCE: "<:hypequadBrilliance:1038966281140969522>",
-    HOUSE_BRAVERY: "<:hypesquadbravey:1038966355514380398>",
-    HOUSE_BALANCE: "<:hypesquadBalance:1038966417774612520>",
-    EARLY_SUPPORTER: "<:earlysupporter:1038966509919277116>",
+    BUGHUNTER_LEVEL_1: "<:discord_bughunterv1:1082401808783265982>",
+    BUGHUNTER_LEVEL_2: "<:discord_bughunterv2:1082401807365591080>",
+    HYPESQUAD_EVENTS: "<:5237_HypeSquadEvents:1082401931718312006>",
+    HOUSE_BRILLIANCE: "<a:1801hypesquadanimated:1082403859881791608>",
+    HOUSE_BRAVERY: "<a:1801hypesquadanimated:1082403859881791608>",
+    HOUSE_BALANCE: "<a:1801hypesquadanimated:1082403859881791608>",
+    EARLY_SUPPORTER: "<:5053earlysupporter:1082403959437791233>",
     TEAM_USER: "Team User",
-    VERIFIED_BOT: "<:verif:1038966608992940133>",
-    DISCORD_CERTIFIED_MODERATOR: "<:certifieddiscordmoderator:1038966900002140201>",
-    EARLY_VERIFIED_BOT_DEVELOPER: "<:verifiedbotdev:1038966926606614618>",
+    VERIFIED_BOT: "<:3721verified:1082403951120494733>",
+    DISCORD_CERTIFIED_MODERATOR: "<:discord_mod:1082401810293207070>",
+    EARLY_VERIFIED_BOT_DEVELOPER: "<:7088earlyverifiedbotdeveloper:1082403949455364106>",
     " ": 'None',
     '': 'None',
   }
   ni = user.displayAvatarURL({ dynamic: true })?.endsWith('.gif');
-  if (ni) ni = "<a:nitrou:1038967100217241741>"
+  if (ni) ni = "<:discord_nitro:1082401811777994812>"
   if (!ni) ni = ' '
   await user.fetch();
 
   const f = user.bannerURL({ size: 4096, dynamic: true })
-  if (f) ni = `<a:nitrou:1038967100217241741> <a:nitrou:1038967100217241741>`
+  if (f) ni = `<:discord_nitro:1082401811777994812> <:discord_nitro:1082401811777994812>`
 
   const ow = new ActionRowBuilder()
     .addComponents(

@@ -26,11 +26,11 @@ module.exports = {
   logchannel: process.env.logchannel, //Örneğin; "https://discordapp.com/api/webhooks/..." [Şart]
   //Botun ana logu'dur ayarladığınız kanalın webhook'una düşer.
   
-  autoroleserver: "", //Örneğin; "710192401896964148" [Şart Değil]
-  //Oto Rol ayarlamak istediğiniz serverin ID'sini gireceksiniz.
+  autoroleserver: "", //Örneğin; "710192401896964148" [Şart]
+  //Yetkilendirilince verilecek rol ayarlamak istediğiniz serverin ID'sini gireceksiniz.
   
-  autoroleid: "", //Örneğin; "710199794857017427" [Şart Değil]
-  //Oto Rol ayarlamak istediğiniz rolün ID'sini gireceksiniz.
+  autoroleid: "", //Örneğin; "710199794857017427" [Şart]
+  //Yetkilendirilince verilecek rol ayarlamak istediğiniz rolün ID'sini gireceksiniz.
   
   client_secret: process.env.client_secret, //Örneğin; "n5wa6tn67as3jdk..." [Şart]
   //Botunuzun Client Secreti'ni .env klasörü oluşturup oraya yazacaksınız. Eğer replit kullanıyorsanız Secrets klasörüne yazmanız yeterli olacak. 
